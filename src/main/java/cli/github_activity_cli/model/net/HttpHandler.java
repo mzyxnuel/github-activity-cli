@@ -24,9 +24,9 @@ public class HttpHandler {
 
          res = client.send(req, HttpResponse.BodyHandlers.ofString());
          if (res.statusCode() != 200) 
-            throw new IOException("failed-to-fetch-data");
+            throw new IOException();
       } catch (URISyntaxException | IOException | InterruptedException e) {
-         e.printStackTrace();
+         System.out.println("failed-to-fetch-data");
       }
       return res;
    }
