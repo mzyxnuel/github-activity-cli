@@ -6,10 +6,8 @@ import java.time.format.DateTimeFormatter;
 public class Event {
    private String id;
    private String type;
-   private Actor actor;
    private Repo repo;
    private String created_at;
-   private Payload payload;
 
    public Event() {}
 
@@ -21,10 +19,6 @@ public class Event {
       return type;
    }
 
-   public Actor getActor() {
-      return actor;
-   }
-
    public Repo getRepo() {
       return repo;
    }
@@ -33,17 +27,13 @@ public class Event {
       return created_at;
    }
 
-   public Payload getPayload() {
-      return payload;
-   }
-
    @Override
    public String toString() {
       String ANSI_RED = "\u001B[31m";
       String ANSI_RESET = "\u001B[0m";
       String ANSI_GREEN = "\u001B[32m";
 
-      return ANSI_GREEN + type + ANSI_RESET + " in " + ANSI_RED + repo.getName() + ANSI_RESET + ", " + parseDate(created_at) + " [" + repo.getUrl() + "]";
+      return ANSI_GREEN + type + ANSI_RESET + " in " + ANSI_RED + repo.getName() + ANSI_RESET + ", " + parseDate(created_at) + " [" + parseRepoUrl(repo.getUrl()) + "]";
    }
    
    private String parseDate(String date) {
@@ -52,5 +42,17 @@ public class Event {
       // Format the date-time to a different pattern
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mm a");
       return zonedDateTime.format(formatter);
+   }
+
+   private String parseRepoUrl(String url) {
+      try {
+         String[] parts = url.split("api.");
+         String firstParsing = parts[0] + parts[1];
+         String[] partsUrl = firstParsing.split("repos/");
+         return partsUrl[0] + partsUrl[1];
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+      return url;
    }
 }

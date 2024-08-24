@@ -27,6 +27,7 @@ public class HttpHandler {
             throw new IOException();
       } catch (URISyntaxException | IOException | InterruptedException e) {
          System.out.println("failed-to-fetch-data");
+         System.exit(0);
       }
       return res;
    }
