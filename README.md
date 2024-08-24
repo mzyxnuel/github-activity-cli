@@ -1,8 +1,4 @@
-<center>
-   <h3>
-      Github activity CLI
-   </h3>
-</center>
+<h3> Github activity CLI </h3>
 
 Run for help:
 ``` bash
@@ -29,3 +25,5 @@ Example:
 github-activity [username] starred
 ```
 ![example](https://i.ibb.co/MV4Gj1s/Git-Hub-Activity-java-github-activity-cli-WSL-Ubuntu-Visual-Studio-Code-8-24-2024-4-49-12-PM.png)
+
+[Inspired by roadmap.sh](https://roadmap.sh/projects/github-user-activity)
